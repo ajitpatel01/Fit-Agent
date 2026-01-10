@@ -1,80 +1,85 @@
-FitAgent – AI Internship Fit & Resume Analyzer
-Project Overview
+# FitAgent – AI Internship Fit & Resume Analyzer
 
-FitAgent is a lightweight AI-powered web application that acts as a single AI reasoning agent wrapped inside a simple web interface.
+FitAgent is a lightweight AI-powered web application that evaluates how well a student’s profile aligns with a given internship role.  
+It uses prompt-driven Large Language Model (LLM) reasoning to generate explainable insights such as skill alignment, gaps, recommendations, and JD-aligned resume content.
 
-The user provides:
+The project is intentionally minimal and focused, designed to demonstrate **AI reasoning, prompt engineering, and backend–frontend integration** without model training or complex ML pipelines.
 
-Student skills (text)
+---
 
-Student interests (text)
+## Project Overview
 
-Internship job description (text)
+FitAgent works as a **single AI reasoning agent** wrapped inside a simple web interface.
 
-Based on this input, the system performs a one-step AI analysis and generates:
+### User Inputs
+- Student skills (text)
+- Student interests (text)
+- Internship job description (text)
 
-An internship match summary
+### AI Outputs
+- Internship match summary
+- Skill gap explanation
+- Personalized recommendation
+- Resume content aligned with the job description
+- Confidence / ATS-style score
 
-Skill gap explanation
+All outputs are generated in **one controlled AI call**, keeping the system predictable and explainable.
 
-Personalized recommendation
+---
 
-Resume content aligned with the job description
+## What the Project Does
 
-A confidence / ATS-style score
+- Understands student background from free-text input  
+- Analyzes internship requirements from the job description  
+- Compares skill overlap and identifies missing areas  
+- Generates human-readable recommendations  
+- Rewrites resume content aligned with the internship role  
+- Produces a simple numeric confidence score  
 
-The entire analysis is handled in one controlled AI call, without any model training or machine learning pipelines.
+This showcases how **LLMs can be used as reasoning engines** in real-world product features.
 
-What the Project Does
+---
 
-Understands student background from free-text input
+## High-Level System Design
 
-Analyzes internship requirements from a job description
-
-Compares skill overlap and missing areas
-
-Generates explainable recommendations
-
-Rewrites resume content aligned to the internship role
-
-Produces a simple numeric confidence score
-
-This demonstrates how LLMs can be used as reasoning engines in real product features.
-
-High-Level System Design
 Frontend (HTML + JavaScript)
-        ↓
+↓
 FastAPI Backend
-        ↓
+↓
 Prompt Construction
-        ↓
+↓
 LLM Reasoning
-        ↓
+↓
 Structured Response
-        ↓
+↓
 Frontend Output Rendering
 
+yaml
+Copy code
 
-The system is intentionally simple to keep the focus on AI reasoning and prompt control.
+The architecture is intentionally simple to keep the focus on **AI reasoning and prompt control**.
 
-Project Structure
+---
+
+## Project Structure
+
 fitagent/
 │
 ├── app/
-│   ├── main.py        # Application entry point
-│   ├── routes.py      # Single API endpoint
-│   ├── schemas.py     # Input and output data models
-│   ├── prompt.py      # Prompt design and instructions
-│   ├── agent.py       # AI reasoning orchestration
-│   └── config.py      # Environment and API key handling
+│ ├── main.py # Application entry point
+│ ├── routes.py # Single API endpoint
+│ ├── schemas.py # Input and output data models
+│ ├── prompt.py # Prompt design and instructions
+│ ├── agent.py # AI reasoning orchestration
+│ └── config.py # Environment and API key handling
 │
 ├── frontend/
-│   ├── index.html     # Single-page UI
-│   ├── styles.css     # Minimal styling
-│   └── script.js      # Form submission and API calls
+│ ├── index.html # Single-page UI
+│ ├── styles.css # Minimal styling
+│ └── script.js # Form submission and API calls
 │
 ├── tests/
-│   └── sample_input.json   # Example input for testing
+│ └── sample_input.json # Example input for testing
 │
 ├── .env
 ├── .gitignore
@@ -82,36 +87,43 @@ fitagent/
 ├── README.md
 └── run.md
 
-Key Design Highlights
+yaml
+Copy code
 
-Single AI agent design
+---
 
-Prompt-centric reasoning approach
+## Key Design Highlights
 
-No model training or data pipelines
+- Single AI agent design  
+- Prompt-centric reasoning approach  
+- No model training or data pipelines  
+- Clean backend–frontend integration  
+- Explainable, human-readable AI output  
+- Minimal and focused implementation  
 
-Clean backend–frontend integration
+---
 
-Explainable, human-readable AI output
+## Tech Stack
 
-Minimal and focused implementation
+- **Backend:** Python, FastAPI  
+- **Frontend:** HTML, CSS, JavaScript  
+- **AI:** Large Language Model (prompt-based reasoning)
 
-Tech Stack
+---
 
-Backend: Python, FastAPI
-
-Frontend: HTML, CSS, JavaScript
-
-AI: Large Language Model (prompt-based reasoning)
-
-Why This Project Is Relevant
+## Why This Project Is Relevant
 
 FitAgent reflects how AI features are prototyped in real-world product teams:
 
-Clear problem definition
+- Clear problem definition  
+- Controlled and structured use of LLMs  
+- Emphasis on explainability and reasoning  
+- Simple, maintainable system design  
 
-Controlled use of LLMs
+It demonstrates **practical AI engineering**, not over-engineered solutions.
 
-Emphasis on reasoning and explainability
+---
 
-Simple, maintainable system design
+## Running the Project
+
+Instructions to run the project locally are provided in `run.md`.
