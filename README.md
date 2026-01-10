@@ -42,56 +42,47 @@ This showcases how **LLMs can be used as reasoning engines** in real-world produ
 
 ## High-Level System Design
 
-Frontend (HTML + JavaScript)
-↓
-FastAPI Backend
-↓
-Prompt Construction
-↓
-LLM Reasoning
-↓
-Structured Response
-↓
-Frontend Output Rendering
-
-yaml
-Copy code
-
 The architecture is intentionally simple to keep the focus on **AI reasoning and prompt control**.
 
----
-
+```text
+Frontend (HTML + JavaScript) 
+      ↓ 
+FastAPI Backend 
+      ↓ 
+Prompt Construction 
+      ↓ 
+LLM Reasoning 
+      ↓ 
+Structured Response 
+      ↓ 
+Frontend Output Rendering
+```
 ## Project Structure
-
+```
 fitagent/
 │
 ├── app/
-│ ├── main.py # Application entry point
-│ ├── routes.py # Single API endpoint
-│ ├── schemas.py # Input and output data models
-│ ├── prompt.py # Prompt design and instructions
-│ ├── agent.py # AI reasoning orchestration
-│ └── config.py # Environment and API key handling
+│   ├── main.py        # Application entry point
+│   ├── routes.py      # Single API endpoint
+│   ├── schemas.py     # Input and output data models
+│   ├── prompt.py      # Prompt design and instructions
+│   ├── agent.py       # AI reasoning orchestration
+│   └── config.py      # Environment and API key handling
 │
 ├── frontend/
-│ ├── index.html # Single-page UI
-│ ├── styles.css # Minimal styling
-│ └── script.js # Form submission and API calls
+│   ├── index.html     # Single-page UI
+│   ├── styles.css     # Minimal styling
+│   └── script.js      # Form submission and API calls
 │
 ├── tests/
-│ └── sample_input.json # Example input for testing
+│   └── sample_input.json  # Example input for testing
 │
 ├── .env
 ├── .gitignore
 ├── requirements.txt
 ├── README.md
 └── run.md
-
-yaml
-Copy code
-
----
-
+```
 ## Key Design Highlights
 
 - Single AI agent design  
