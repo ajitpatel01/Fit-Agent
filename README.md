@@ -44,6 +44,7 @@ This showcases how **LLMs can be used as reasoning engines** in real-world produ
 
 The architecture is intentionally simple to keep the focus on **AI reasoning and prompt control**.
 
+```text
 Frontend (HTML + JavaScript) 
       ↓ 
 FastAPI Backend 
@@ -55,7 +56,7 @@ LLM Reasoning
 Structured Response 
       ↓ 
 Frontend Output Rendering
-
+```
 ## Project Structure
 
 fitagent/
