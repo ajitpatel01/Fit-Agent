@@ -58,7 +58,7 @@ Structured Response
 Frontend Output Rendering
 ```
 ## Project Structure
-
+```
 fitagent/
 │
 ├── app/
@@ -82,7 +82,7 @@ fitagent/
 ├── requirements.txt
 ├── README.md
 └── run.md
-
+```
 ## Key Design Highlights
 
 - Single AI agent design  
