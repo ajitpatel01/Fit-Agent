@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>FitAgent – Internship Fit Analyzer</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+    <h1>FitAgent</h1>
+    <p>AI-powered internship fit & resume analyzer</p>
+
+    <div class="form-container">
+        <label>Student Skills</label>
+        <textarea id="skills" placeholder="e.g. Python, Machine Learning"></textarea>
+
+        <label>Student Interests</label>
+        <textarea id="interests" placeholder="e.g. AI, backend development"></textarea>
+
+        <label>Internship Job Description</label>
+        <textarea id="job_description" placeholder="Paste internship JD here"></textarea>
+
+        <button onclick="analyzeFit()">Analyze Fit</button>
+    </div>
+
+    <hr />
+
+    <div id="output" class="output-container">
+        <h2>Analysis Output</h2>
+        <pre id="result">Waiting for analysis...</pre>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
