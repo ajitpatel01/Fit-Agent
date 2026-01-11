@@ -1,60 +1,81 @@
 # FitAgent – AI Internship Fit & Resume Analyzer
 
-FitAgent is a lightweight AI-powered web application that evaluates how well a student’s profile aligns with a given internship role.  
-It uses prompt-driven Large Language Model (LLM) reasoning to generate explainable insights such as skill alignment, gaps, recommendations, and JD-aligned resume content.
+FitAgent is a minimal AI-powered web application that evaluates how well a student’s profile aligns with a given internship role.
 
-The project is intentionally minimal and focused, designed to demonstrate **AI reasoning, prompt engineering, and backend–frontend integration** without model training or complex ML pipelines.
+It uses **prompt-driven Large Language Model (LLM) reasoning** to compare a student’s skills and interests against an internship job description and generates clear, explainable outputs such as match analysis, skill gaps, recommendations, and a JD-aligned resume.
+
+The project is intentionally simple and focused to demonstrate **AI reasoning, prompt engineering, and end-to-end integration**, without model training or complex system design.
 
 ---
 
-## Project Overview
+## Assignment Objective
 
-FitAgent works as a **single AI reasoning agent** wrapped inside a simple web interface.
+This project fulfills the assignment requirement to build a basic AI agent or script that:
 
-### User Inputs
-- Student skills (text)
-- Student interests (text)
-- Internship job description (text)
+- Takes a student profile (skills and interests)
+- Takes an internship description
+- Produces:
+  - Internship match summary
+  - Skill gap explanation
+  - Simple recommendation text
+  - A new resume aligned with the job description
+  - Confidence / ATS-style score
 
-### AI Outputs
+FitAgent implements this as a **backend API with a minimal web interface**, using a single AI reasoning step.
+
+---
+
+## How FitAgent Works
+
+FitAgent operates as a **single AI reasoning agent**:
+
+### Inputs
+- Student skills (free-text)
+- Student interests (free-text)
+- Internship job description (free-text)
+
+### Outputs
 - Internship match summary
-- Skill gap explanation
-- Personalized recommendation
-- Resume content aligned with the job description
-- Confidence / ATS-style score
+- Skill gap analysis
+- Actionable recommendation
+- JD-aligned resume content
+- Numeric confidence / ATS score
 
-All outputs are generated in **one controlled AI call**, keeping the system predictable and explainable.
-
----
-
-## What the Project Does
-
-- Understands student background from free-text input  
-- Analyzes internship requirements from the job description  
-- Compares skill overlap and identifies missing areas  
-- Generates human-readable recommendations  
-- Rewrites resume content aligned with the internship role  
-- Produces a simple numeric confidence score  
-
-This showcases how **LLMs can be used as reasoning engines** in real-world product features.
+All outputs are generated in **one controlled LLM call**, ensuring predictable and explainable results.
 
 ---
 
-## High-Level System Design
+## AI Reasoning Approach
 
-The architecture is intentionally simple to keep the focus on **AI reasoning and prompt control**.
+- A carefully designed prompt instructs the AI to:
+  - Understand the student profile
+  - Understand internship requirements
+  - Compare skill overlap
+  - Identify missing skills
+  - Rewrite resume content aligned with the job description
+  - Assign a confidence score
+- The AI response is constrained to a **strict JSON format**
+- Robust JSON extraction ensures schema-safe outputs even if the model adds extra text
+
+This demonstrates **prompt design, reasoning control, and safe AI integration**.
+
+---
+
+## High-Level System Flow
 
 ```text
-Frontend (HTML + JavaScript) 
-      ↓ 
-FastAPI Backend 
-      ↓ 
-Prompt Construction 
-      ↓ 
-LLM Reasoning 
-      ↓ 
-Structured Response 
-      ↓ 
+User Input (Web Form)
+        ↓
+Frontend (HTML + JavaScript)
+        ↓
+FastAPI Backend
+        ↓
+Prompt Construction
+        ↓
+LLM Reasoning (Groq)
+        ↓
+Structured JSON Response
+        ↓
 Frontend Output Rendering
 ```
 ## Project Structure
@@ -62,26 +83,26 @@ Frontend Output Rendering
 fitagent/
 │
 ├── app/
-│   ├── main.py        # Application entry point
-│   ├── routes.py      # Single API endpoint
-│   ├── schemas.py     # Input and output data models
+│   ├── main.py        # FastAPI app entry point
+│   ├── routes.py      # /analyze API endpoint
+│   ├── schemas.py     # Input/output data models
 │   ├── prompt.py      # Prompt design and instructions
 │   ├── agent.py       # AI reasoning orchestration
-│   └── config.py      # Environment and API key handling
+│   └── config.py      # Environment & API key handling
 │
 ├── frontend/
 │   ├── index.html     # Single-page UI
 │   ├── styles.css     # Minimal styling
-│   └── script.js      # Form submission and API calls
+│   └── script.js      # API calls and output rendering
 │
 ├── tests/
-│   └── sample_input.json  # Example input for testing
+│   └── sample_input.json
 │
-├── .env
 ├── .gitignore
 ├── requirements.txt
 ├── README.md
 └── run.md
+
 ```
 ## Key Design Highlights
 
@@ -98,7 +119,7 @@ fitagent/
 
 - **Backend:** Python, FastAPI  
 - **Frontend:** HTML, CSS, JavaScript  
-- **AI:** Large Language Model (prompt-based reasoning)
+- **AI:** Large Language Model, Groq LLM (LLaMA 3.1 family), Prompt-based reasoning (no training, no pipelines)
 
 ---
 
