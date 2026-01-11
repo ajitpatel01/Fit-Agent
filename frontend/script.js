@@ -1,10 +1,19 @@
 async function analyzeFit() {
-    const skills = document.getElementById("skills").value;
-    const interests = document.getElementById("interests").value;
-    const jobDescription = document.getElementById("job_description").value;
+    const skills = document.getElementById("skills").value.trim();
+    const interests = document.getElementById("interests").value.trim();
+    const jobDescription = document.getElementById("job_description").value.trim();
 
-    const resultBox = document.getElementById("result");
-    resultBox.textContent = "Analyzing...";
+    const outputDiv = document.getElementById("output");
+    const analyzeBtn = document.getElementById("analyzeBtn");
+
+    if (!skills || !interests || !jobDescription) {
+        outputDiv.innerHTML = "<span style='color:#ff9a9a'>Please fill in all fields.</span>";
+        return;
+    }
+
+    analyzeBtn.disabled = true;
+    analyzeBtn.textContent = "Analyzing...";
+    outputDiv.innerHTML = "Running AI analysis...";
 
     try {
         const response = await fetch("http://127.0.0.1:8000/analyze", {
@@ -20,19 +29,54 @@ async function analyzeFit() {
         });
 
         if (!response.ok) {
-            throw new Error("API error");
+            throw new Error("API request failed");
         }
 
         const data = await response.json();
 
-        resultBox.textContent =
-            "Match Summary:\n" + data.match_summary + "\n\n" +
-            "Skill Gaps:\n" + data.skill_gaps + "\n\n" +
-            "Recommendation:\n" + data.recommendation + "\n\n" +
-            "Resume Text:\n" + data.resume_text + "\n\n" +
-            "Confidence Score: " + data.confidence_score;
+        outputDiv.innerHTML = renderOutput(data);
 
     } catch (error) {
-        resultBox.textContent = "Error: Unable to analyze fit.";
+        outputDiv.innerHTML =
+            "<span style='color:#ff9a9a'>Error: Unable to analyze fit. Please try again.</span>";
+    } finally {
+        analyzeBtn.disabled = false;
+        analyzeBtn.textContent = "Analyze Fit";
     }
 }
+
+function renderOutput(data) {
+    return `
+        <div class="output-block">
+            <div class="output-title">Match Summary</div>
+            <div>${data.match_summary}</div>
+        </div>
+
+        <div class="output-block">
+            <div class="output-title">Skill Gaps</div>
+            <div>${data.skill_gaps}</div>
+        </div>
+
+        <div class="output-block">
+            <div class="output-title">Recommendation</div>
+            <div>${data.recommendation}</div>
+        </div>
+
+        <div class="output-block">
+            <div class="output-title">JD-Aligned Resume</div>
+            <div>${data.resume_text}</div>
+        </div>
+
+        <div class="output-block confidence">
+            Confidence Score: ${data.confidence_score}
+        </div>
+    `;
+}
+
+// Attach button handler safely
+document.addEventListener("DOMContentLoaded", () => {
+    const btn = document.getElementById("analyzeBtn");
+    if (btn) {
+        btn.addEventListener("click", analyzeFit);
+    }
+});
