@@ -31,6 +31,7 @@
     }
   </script>
 </head>
+<<<<<<< HEAD
 
 <body class="bg-bgDark text-gray-100 min-h-screen">
 
@@ -156,5 +157,61 @@
     document.getElementById("analyzeBtn").addEventListener("click", analyzeFit);
   </script>
 
+=======
+<body>
+  <!-- Vanta Background Wrapper -->
+  <div id="vanta-bg">
+    <div class="container">
+      <h1>FitAgent</h1>
+      <p class="subtitle">AI-powered internship fit & resume analyzer</p>
+
+      <div class="card">
+        <label for="skills">Student Skills</label>
+        <textarea id="skills" placeholder="e.g. Python, Machine Learning, SQL"></textarea>
+
+        <label for="interests">Student Interests</label>
+        <textarea id="interests" placeholder="e.g. AI, Backend, Data Science"></textarea>
+
+        <label for="job_description">Internship Job Description</label>
+        <textarea id="job_description" placeholder="Paste internship JD here..."></textarea>
+
+        <button id="analyzeBtn" onclick="analyzeFit()">Analyze Fit</button>
+      </div>
+
+      <div class="card output-section">
+        <h2>Analysis Output</h2>
+        <div id="output">Fill the form and click “Analyze Fit”.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vanta dependencies -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+
+  <!-- Vanta Init -->
+  <script>
+    VANTA.NET({
+      el: "#vanta-bg",
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200.0,
+      minWidth: 200.0,
+      scale: 1.0,
+      scaleMobile: 1.0,
+      color: 0x931313,
+      backgroundColor: 0x23153c,
+      points: 13.0,
+      maxDistance: 23.0,
+      spacing: 17.0,
+      showDots: true
+    });
+  </script>
+
+  <script src="script.js"></script>
+>>>>>>> 1b05d8e (Enhance frontend UI with dark purple theme and animated background)
 </body>
+
+
 </html>

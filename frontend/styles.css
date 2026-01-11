@@ -13,7 +13,11 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+<<<<<<< HEAD
   color: #e5e7eb;
+=======
+  color: #eaeaf0;
+>>>>>>> 1b05d8e (Enhance frontend UI with dark purple theme and animated background)
   background: transparent; /* Vanta controls background */
 }
 
@@ -33,10 +37,17 @@ body {
 
 .container {
   max-width: 900px;
+<<<<<<< HEAD
   margin: 70px auto;
   padding: 34px;
   position: relative;
   z-index: 2;
+=======
+  margin: 40px auto;
+  padding: 30px;
+  position: relative;
+  z-index: 2; /* Keeps content above Vanta */
+>>>>>>> 1b05d8e (Enhance frontend UI with dark purple theme and animated background)
 }
 
 /* =========================
@@ -44,6 +55,7 @@ body {
    ========================= */
 
 h1 {
+<<<<<<< HEAD
   font-family: "Macondo", cursive;
   font-size: 2.8rem;
   margin-bottom: 10px;
@@ -73,6 +85,31 @@ h1 {
     0 0 0 1px rgba(255,255,255,0.02),
     0 25px 60px rgba(0,0,0,0.65),
     inset 0 0 30px rgba(148, 93, 255, 0.05);
+=======
+  font-size: 2.2rem;
+  margin-bottom: 6px;
+  color: #e7d9ff;
+}
+
+.subtitle {
+  color: #b8a7d9;
+  margin-bottom: 30px;
+  font-size: 0.95rem;
+}
+
+/* =========================
+   CARD (GLASS EFFECT)
+   ========================= */
+
+.card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(186, 134, 255, 0.25);
+  border-radius: 14px;
+  padding: 25px;
+  margin-bottom: 25px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
+>>>>>>> 1b05d8e (Enhance frontend UI with dark purple theme and animated background)
 }
 
 /* =========================
@@ -81,15 +118,22 @@ h1 {
 
 label {
   display: block;
+<<<<<<< HEAD
   margin-bottom: 10px;
   font-weight: 600;
   font-size: 0.9rem;
   color: #e0d9ff;
+=======
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #e2d9ff;
+>>>>>>> 1b05d8e (Enhance frontend UI with dark purple theme and animated background)
 }
 
 textarea {
   width: 100%;
   min-height: 90px;
+<<<<<<< HEAD
   padding: 14px 16px;
   border-radius: 14px;
   border: 1px solid rgba(186, 134, 255, 0.25);
@@ -103,22 +147,45 @@ textarea {
 
 textarea::placeholder {
   color: #9a8fc7;
+=======
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(186, 134, 255, 0.3);
+  background: rgba(0, 0, 0, 0.4);
+  color: #f1ecff;
+  resize: vertical;
+  margin-bottom: 18px;
+  font-size: 0.95rem;
+}
+
+textarea::placeholder {
+  color: #a89bc9;
+>>>>>>> 1b05d8e (Enhance frontend UI with dark purple theme and animated background)
 }
 
 textarea:focus {
   outline: none;
   border-color: #b678ff;
+<<<<<<< HEAD
   box-shadow: 0 0 0 2px rgba(182, 120, 255, 0.3);
 }
 
 /* =========================
    PRIMARY CTA BUTTON
+=======
+  box-shadow: 0 0 0 2px rgba(182, 120, 255, 0.25);
+}
+
+/* =========================
+   BUTTON
+>>>>>>> 1b05d8e (Enhance frontend UI with dark purple theme and animated background)
    ========================= */
 
 button {
   background: linear-gradient(135deg, #8f5bff, #c77dff);
   color: #ffffff;
   border: none;
+<<<<<<< HEAD
   padding: 13px 28px;
   border-radius: 999px;
   font-size: 0.95rem;
@@ -128,10 +195,19 @@ button {
     transform 0.15s ease,
     box-shadow 0.15s ease,
     opacity 0.15s ease;
+=======
+  padding: 12px 22px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+>>>>>>> 1b05d8e (Enhance frontend UI with dark purple theme and animated background)
 }
 
 button:hover {
   transform: translateY(-1px);
+<<<<<<< HEAD
   box-shadow: 0 14px 34px rgba(183, 122, 255, 0.45);
   opacity: 0.95;
 }
@@ -183,6 +259,55 @@ button:disabled {
 
   h1 {
     font-size: 2.1rem;
+=======
+  box-shadow: 0 8px 24px rgba(183, 122, 255, 0.45);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* =========================
+   OUTPUT SECTION
+   ========================= */
+
+.output-section h2 {
+  margin-top: 0;
+  color: #e7d9ff;
+}
+
+.output-block {
+  margin-bottom: 16px;
+  line-height: 1.45;
+}
+
+.output-title {
+  font-weight: 700;
+  color: #cda9ff;
+  margin-bottom: 4px;
+}
+
+.confidence {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #9affc7;
+  margin-top: 10px;
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+   ========================= */
+
+@media (max-width: 600px) {
+  .container {
+    padding: 20px;
+    margin: 20px auto;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+>>>>>>> 1b05d8e (Enhance frontend UI with dark purple theme and animated background)
   }
 
   textarea {

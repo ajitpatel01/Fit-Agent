@@ -3,36 +3,10 @@ async function analyzeFit() {
     const interests = document.getElementById("interests").value.trim();
     const jobDescription = document.getElementById("job_description").value.trim();
 
-    const outputDiv = document.getElementById("output");
-    const analyzeBtn = document.getElementById("analyzeBtn");
-
-    /* =========================
-       VALIDATION
-       ========================= */
-
-    if (!skills || !interests || !jobDescription) {
-        outputDiv.innerHTML = `
-            <div class="output-block" style="color:#f87171;">
-                Please fill in all fields before analyzing.
-            </div>
-        `;
-        return;
-    }
-
-    /* =========================
-       LOADING STATE
-       ========================= */
-
-    analyzeBtn.disabled = true;
-    analyzeBtn.textContent = "Analyzing...";
-    outputDiv.innerHTML = `
-        <div class="output-block" style="color:#9ca3af;">
-            Running AI analysis…
-        </div>
-    `;
+    const resultBox = document.getElementById("result");
+    resultBox.textContent = "Analyzing...";
 
     try {
-        // ✅ SAME-ORIGIN REQUEST (FIXED)
         const response = await fetch("/analyze", {
             method: "POST",
             headers: {
@@ -45,75 +19,20 @@ async function analyzeFit() {
             })
         });
 
-        const text = await response.text();
-
         if (!response.ok) {
-            console.error("API Error:", text);
-            throw new Error(text);
+            throw new Error("API error");
         }
 
-        const data = JSON.parse(text);
-        outputDiv.innerHTML = renderOutput(data);
+        const data = await response.json();
+
+        resultBox.textContent =
+            "Match Summary:\n" + data.match_summary + "\n\n" +
+            "Skill Gaps:\n" + data.skill_gaps + "\n\n" +
+            "Recommendation:\n" + data.recommendation + "\n\n" +
+            "Resume Text:\n" + data.resume_text + "\n\n" +
+            "Confidence Score: " + data.confidence_score;
 
     } catch (error) {
-        console.error("Frontend Error:", error);
-        outputDiv.innerHTML = `
-            <div class="output-block" style="color:#f87171;">
-                Error: Unable to analyze fit. Please try again.
-            </div>
-        `;
-    } finally {
-        analyzeBtn.disabled = false;
-        analyzeBtn.textContent = "Analyze Fit";
+        resultBox.textContent = "Error: Unable to analyze fit.";
     }
 }
-
-/* =========================
-   OUTPUT RENDERING
-   ========================= */
-
-function renderOutput(data) {
-    const confidence = parseFloat(data.confidence_score) || 0;
-    const confidencePercent = Math.min(Math.max(confidence, 0), 100);
-
-    return `
-        <div class="output-block">
-            <div class="output-title">Match Summary</div>
-            <div>${data.match_summary}</div>
-        </div>
-
-        <div class="output-block">
-            <div class="output-title">Skill Gaps</div>
-            <div>${data.skill_gaps}</div>
-        </div>
-
-        <div class="output-block">
-            <div class="output-title">Recommendation</div>
-            <div>${data.recommendation}</div>
-        </div>
-
-        <div class="output-block">
-            <div class="output-title">JD-Aligned Resume</div>
-            <div>${data.resume_text}</div>
-        </div>
-
-        <div class="output-block">
-            <div class="output-title">Confidence Score</div>
-            <div class="confidence">${confidencePercent}%</div>
-            <div class="confidence-bar">
-                <div class="confidence-fill" style="width:${confidencePercent}%"></div>
-            </div>
-        </div>
-    `;
-}
-
-/* =========================
-   SINGLE EVENT BINDING
-   ========================= */
-
-document.addEventListener("DOMContentLoaded", () => {
-    const btn = document.getElementById("analyzeBtn");
-    if (btn) {
-        btn.addEventListener("click", analyzeFit);
-    }
-});
