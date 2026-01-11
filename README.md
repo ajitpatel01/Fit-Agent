@@ -104,14 +104,6 @@ fitagent/
 └── run.md
 
 ```
-## Key Design Highlights
-
-- Single AI agent design  
-- Prompt-centric reasoning approach  
-- No model training or data pipelines  
-- Clean backend–frontend integration  
-- Explainable, human-readable AI output  
-- Minimal and focused implementation  
 
 ---
 
