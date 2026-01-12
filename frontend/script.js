@@ -6,17 +6,34 @@ async function analyzeFit() {
     const outputDiv = document.getElementById("output");
     const analyzeBtn = document.getElementById("analyzeBtn");
 
+    /* =========================
+       VALIDATION
+       ========================= */
+
     if (!skills || !interests || !jobDescription) {
-        outputDiv.innerHTML = "<span style='color:#ff9a9a'>Please fill in all fields.</span>";
+        outputDiv.innerHTML = `
+            <div class="output-block" style="color:#f87171;">
+                Please fill in all fields before analyzing.
+            </div>
+        `;
         return;
     }
 
+    /* =========================
+       LOADING STATE
+       ========================= */
+
     analyzeBtn.disabled = true;
     analyzeBtn.textContent = "Analyzing...";
-    outputDiv.innerHTML = "Running AI analysis...";
+    outputDiv.innerHTML = `
+        <div class="output-block" style="color:#9ca3af;">
+            Running AI analysis…
+        </div>
+    `;
 
     try {
-        const response = await fetch("http://127.0.0.1:8000/analyze", {
+        // ✅ SAME-ORIGIN REQUEST (FIXED)
+        const response = await fetch("/analyze", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -28,24 +45,37 @@ async function analyzeFit() {
             })
         });
 
+        const text = await response.text();
+
         if (!response.ok) {
-            throw new Error("API request failed");
+            console.error("API Error:", text);
+            throw new Error(text);
         }
 
-        const data = await response.json();
-
+        const data = JSON.parse(text);
         outputDiv.innerHTML = renderOutput(data);
 
     } catch (error) {
-        outputDiv.innerHTML =
-            "<span style='color:#ff9a9a'>Error: Unable to analyze fit. Please try again.</span>";
+        console.error("Frontend Error:", error);
+        outputDiv.innerHTML = `
+            <div class="output-block" style="color:#f87171;">
+                Error: Unable to analyze fit. Please try again.
+            </div>
+        `;
     } finally {
         analyzeBtn.disabled = false;
         analyzeBtn.textContent = "Analyze Fit";
     }
 }
 
+/* =========================
+   OUTPUT RENDERING
+   ========================= */
+
 function renderOutput(data) {
+    const confidence = parseFloat(data.confidence_score) || 0;
+    const confidencePercent = Math.min(Math.max(confidence, 0), 100);
+
     return `
         <div class="output-block">
             <div class="output-title">Match Summary</div>
@@ -67,13 +97,20 @@ function renderOutput(data) {
             <div>${data.resume_text}</div>
         </div>
 
-        <div class="output-block confidence">
-            Confidence Score: ${data.confidence_score}
+        <div class="output-block">
+            <div class="output-title">Confidence Score</div>
+            <div class="confidence">${confidencePercent}%</div>
+            <div class="confidence-bar">
+                <div class="confidence-fill" style="width:${confidencePercent}%"></div>
+            </div>
         </div>
     `;
 }
 
-// Attach button handler safely
+/* =========================
+   SINGLE EVENT BINDING
+   ========================= */
+
 document.addEventListener("DOMContentLoaded", () => {
     const btn = document.getElementById("analyzeBtn");
     if (btn) {
