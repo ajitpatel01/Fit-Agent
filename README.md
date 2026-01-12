@@ -84,24 +84,23 @@ fitagent/
 │
 ├── app/
 │   ├── main.py        # FastAPI app entry point
-│   ├── routes.py      # /analyze API endpoint
-│   ├── schemas.py     # Input/output data models
-│   ├── prompt.py      # Prompt design and instructions
+│   ├── routes.py      # /analyze endpoint
+│   ├── schemas.py     # Request/response models
+│   ├── prompt.py      # Prompt design
 │   ├── agent.py       # AI reasoning orchestration
-│   └── config.py      # Environment & API key handling
+│   └── config.py      # Environment & API keys
 │
 ├── frontend/
-│   ├── index.html     # Single-page UI
-│   ├── styles.css     # Minimal styling
-│   └── script.js      # API calls and output rendering
+│   └── index.html     # Main UI
 │
-├── tests/
-│   └── sample_input.json
+├── static/
+│   ├── styles.css     # UI styling
+│   └── script.js      # Frontend logic
 │
-├── .gitignore
 ├── requirements.txt
 ├── README.md
 └── run.md
+
 
 ```
 
@@ -131,3 +130,5 @@ It demonstrates **practical AI engineering**, not over-engineered solutions.
 ## Running the Project
 
 Instructions to run the project locally are provided in `run.md`.
+
+Live Demo: https://fit-agent.onrender.com
