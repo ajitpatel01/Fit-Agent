@@ -2,300 +2,52 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FitAgent</title>
 
-  <title>FitAgent – AI Internship Fit Analyzer</title>
-
-  <!-- Macondo Font -->
+  <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Macondo&display=swap" rel="stylesheet">
 
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            bgDark: "#23153c",
-            accent: "#931313",
-            card: "rgba(255,255,255,0.06)"
-          },
-          fontFamily: {
-            macondo: ["Macondo", "cursive"]
-          }
-        }
-      }
-    }
-  </script>
+  <!-- Styles -->
+  <link rel="stylesheet" href="/static/styles.css">
 </head>
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-<body class="bg-bgDark text-gray-100 min-h-screen">
-
-  <!-- NAVBAR -->
-  <nav class="w-full px-6 py-4 flex justify-between items-center border-b border-white/10">
-    <h1 class="font-macondo text-2xl tracking-wide">FitAgent</h1>
-    <span class="text-sm text-purple-300">AI Internship Analyzer</span>
-  </nav>
-
-  <!-- HERO SECTION -->
-  <section class="max-w-5xl mx-auto px-6 py-14 text-center">
-    <h2 class="font-macondo text-5xl mb-4">
-      FitAgent
-    </h2>
-    <p class="text-lg text-gray-300 max-w-2xl mx-auto">
-      AI-powered internship fit analysis. Discover how well your profile matches any role and get a tailored resume.
-    </p>
-
-    <div class="flex justify-center gap-6 mt-8 text-purple-300 font-medium">
-      <span>AI Analysis</span>
-      <span>Skill Matching</span>
-      <span>Resume Builder</span>
-    </div>
-  </section>
-
-  <!-- INPUT CARD -->
-  <section class="max-w-5xl mx-auto px-6">
-    <div class="bg-card backdrop-blur-lg border border-white/10 rounded-2xl p-8 space-y-6">
-
-      <!-- Skills -->
-      <div>
-        <label class="block mb-2 font-semibold">Your Skills</label>
-        <textarea id="skills"
-          placeholder="Python, Machine Learning, SQL, React..."
-          class="auto-resize w-full bg-black/30 border border-white/20 rounded-xl p-4 resize-none focus:outline-none focus:ring-2 focus:ring-purple-500"></textarea>
-      </div>
-
-      <!-- Interests -->
-      <div>
-        <label class="block mb-2 font-semibold">Your Interests</label>
-        <textarea id="interests"
-          placeholder="AI, Backend, Data Science..."
-          class="auto-resize w-full bg-black/30 border border-white/20 rounded-xl p-4 resize-none focus:outline-none focus:ring-2 focus:ring-purple-500"></textarea>
-      </div>
-
-      <!-- JD -->
-      <div>
-        <label class="block mb-2 font-semibold">Internship Job Description</label>
-        <textarea id="job_description"
-          placeholder="Paste the complete job description here..."
-          class="auto-resize w-full bg-black/30 border border-white/20 rounded-xl p-4 resize-none focus:outline-none focus:ring-2 focus:ring-purple-500"></textarea>
-      </div>
-
-      <div class="text-center pt-4">
-        <button id="analyzeBtn"
-          class="bg-purple-600 hover:bg-purple-700 transition px-8 py-3 rounded-xl font-semibold">
-          Analyze My Fit →
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- OUTPUT -->
-  <section class="max-w-5xl mx-auto px-6 py-14">
-    <div class="bg-card backdrop-blur-lg border border-white/10 rounded-2xl p-8">
-      <h3 class="text-2xl font-semibold mb-6">Analysis Output</h3>
-      <div id="output" class="space-y-4 text-gray-200">
-        <p class="text-gray-400">Submit your details to see AI-powered analysis.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- JS -->
-  <script>
-    // Auto-resize textarea
-    document.querySelectorAll(".auto-resize").forEach(el => {
-      el.addEventListener("input", () => {
-        el.style.height = "auto";
-        el.style.height = el.scrollHeight + "px";
-      });
-    });
-
-    async function analyzeFit() {
-      const skills = skillsInput.value.trim();
-      const interests = interestsInput.value.trim();
-      const job = jobInput.value.trim();
-      const output = document.getElementById("output");
-
-      if (!skills || !interests || !job) {
-        output.innerHTML = "<p class='text-red-400'>Please fill all fields.</p>";
-        return;
-      }
-
-      output.innerHTML = "<p class='text-purple-300'>Running AI analysis...</p>";
-
-      try {
-        const res = await fetch("http://127.0.0.1:8000/analyze", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            skills, interests, job_description: job
-          })
-        });
-
-        const data = await res.json();
-
-        output.innerHTML = `
-          <div><strong>Match Summary:</strong><p>${data.match_summary}</p></div>
-          <div><strong>Skill Gaps:</strong><p>${data.skill_gaps}</p></div>
-          <div><strong>Recommendation:</strong><p>${data.recommendation}</p></div>
-          <div><strong>Resume Text:</strong><p>${data.resume_text}</p></div>
-          <div class="text-green-400 font-bold">Confidence Score: ${data.confidence_score}</div>
-        `;
-      } catch {
-        output.innerHTML = "<p class='text-red-400'>Unable to analyze fit.</p>";
-      }
-    }
-
-    const skillsInput = document.getElementById("skills");
-    const interestsInput = document.getElementById("interests");
-    const jobInput = document.getElementById("job_description");
-
-    document.getElementById("analyzeBtn").addEventListener("click", analyzeFit);
-  </script>
-
-=======
 <body>
-  <!-- Vanta Background Wrapper -->
   <div id="vanta-bg">
-    <div class="container">
-      <h1>FitAgent</h1>
-      <p class="subtitle">AI-powered internship fit & resume analyzer</p>
-=======
->>>>>>> 3f5605b (Frontend fixes and same-origin API integration)
+    <nav class="navbar">
+      <h2>FitAgent</h2>
+    </nav>
 
-<body class="bg-bgDark text-gray-100 min-h-screen">
+    <main class="container">
+      <h1 class="macondo-regular">FitAgent</h1>
+      <p class="subtitle">
+        AI-powered internship fit analysis. Discover how well your profile matches any role and get a tailored resume.
+      </p>
 
-  <!-- NAVBAR -->
-  <nav class="w-full px-6 py-4 flex justify-between items-center border-b border-white/10">
-    <h1 class="font-macondo text-2xl tracking-wide">FitAgent</h1>
-    <span class="text-sm text-purple-300">AI Internship Analyzer</span>
-  </nav>
+      <!-- FORM -->
+      <div class="card">
+        <label>Your Skills</label>
+        <textarea id="skills"></textarea>
 
-  <!-- HERO SECTION -->
-  <section class="max-w-5xl mx-auto px-6 py-14 text-center">
-    <h2 class="font-macondo text-5xl mb-4">
-      FitAgent
-    </h2>
-    <p class="text-lg text-gray-300 max-w-2xl mx-auto">
-      AI-powered internship fit analysis. Discover how well your profile matches any role and get a tailored resume.
-    </p>
+        <label>Your Interests</label>
+        <textarea id="interests"></textarea>
 
-    <div class="flex justify-center gap-6 mt-8 text-purple-300 font-medium">
-      <span>AI Analysis</span>
-      <span>Skill Matching</span>
-      <span>Resume Builder</span>
-    </div>
-  </section>
+        <label>Internship Job Description</label>
+        <textarea id="job_description"></textarea>
 
-  <!-- INPUT CARD -->
-  <section class="max-w-5xl mx-auto px-6">
-    <div class="bg-card backdrop-blur-lg border border-white/10 rounded-2xl p-8 space-y-6">
-
-      <!-- Skills -->
-      <div>
-        <label class="block mb-2 font-semibold">Your Skills</label>
-        <textarea id="skills"
-          placeholder="Python, Machine Learning, SQL, React..."
-          class="auto-resize w-full bg-black/30 border border-white/20 rounded-xl p-4 resize-none focus:outline-none focus:ring-2 focus:ring-purple-500"></textarea>
+        <button id="analyzeBtn">Analyze My Fit →</button>
       </div>
 
-      <!-- Interests -->
-      <div>
-        <label class="block mb-2 font-semibold">Your Interests</label>
-        <textarea id="interests"
-          placeholder="AI, Backend, Data Science..."
-          class="auto-resize w-full bg-black/30 border border-white/20 rounded-xl p-4 resize-none focus:outline-none focus:ring-2 focus:ring-purple-500"></textarea>
+      <!-- OUTPUT -->
+      <div class="card output-section">
+        <h2>Analysis Output</h2>
+        <div id="output">Submit your details to see AI-powered analysis.</div>
       </div>
+    </main>
+  </div>
 
-      <!-- JD -->
-      <div>
-        <label class="block mb-2 font-semibold">Internship Job Description</label>
-        <textarea id="job_description"
-          placeholder="Paste the complete job description here..."
-          class="auto-resize w-full bg-black/30 border border-white/20 rounded-xl p-4 resize-none focus:outline-none focus:ring-2 focus:ring-purple-500"></textarea>
-      </div>
-
-      <div class="text-center pt-4">
-        <button id="analyzeBtn"
-          class="bg-purple-600 hover:bg-purple-700 transition px-8 py-3 rounded-xl font-semibold">
-          Analyze My Fit →
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- OUTPUT -->
-  <section class="max-w-5xl mx-auto px-6 py-14">
-    <div class="bg-card backdrop-blur-lg border border-white/10 rounded-2xl p-8">
-      <h3 class="text-2xl font-semibold mb-6">Analysis Output</h3>
-      <div id="output" class="space-y-4 text-gray-200">
-        <p class="text-gray-400">Submit your details to see AI-powered analysis.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- JS -->
-  <script>
-    // Auto-resize textarea
-    document.querySelectorAll(".auto-resize").forEach(el => {
-      el.addEventListener("input", () => {
-        el.style.height = "auto";
-        el.style.height = el.scrollHeight + "px";
-      });
-    });
-
-    async function analyzeFit() {
-      const skills = skillsInput.value.trim();
-      const interests = interestsInput.value.trim();
-      const job = jobInput.value.trim();
-      const output = document.getElementById("output");
-
-      if (!skills || !interests || !job) {
-        output.innerHTML = "<p class='text-red-400'>Please fill all fields.</p>";
-        return;
-      }
-
-      output.innerHTML = "<p class='text-purple-300'>Running AI analysis...</p>";
-
-      try {
-        const res = await fetch("http://127.0.0.1:8000/analyze", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            skills, interests, job_description: job
-          })
-        });
-
-        const data = await res.json();
-
-        output.innerHTML = `
-          <div><strong>Match Summary:</strong><p>${data.match_summary}</p></div>
-          <div><strong>Skill Gaps:</strong><p>${data.skill_gaps}</p></div>
-          <div><strong>Recommendation:</strong><p>${data.recommendation}</p></div>
-          <div><strong>Resume Text:</strong><p>${data.resume_text}</p></div>
-          <div class="text-green-400 font-bold">Confidence Score: ${data.confidence_score}</div>
-        `;
-      } catch {
-        output.innerHTML = "<p class='text-red-400'>Unable to analyze fit.</p>";
-      }
-    }
-
-    const skillsInput = document.getElementById("skills");
-    const interestsInput = document.getElementById("interests");
-    const jobInput = document.getElementById("job_description");
-
-    document.getElementById("analyzeBtn").addEventListener("click", analyzeFit);
-  </script>
-
-<<<<<<< HEAD
-  <script src="script.js"></script>
->>>>>>> 1b05d8e (Enhance frontend UI with dark purple theme and animated background)
-=======
->>>>>>> 3f5605b (Frontend fixes and same-origin API integration)
+  <!-- JS (ONLY ONCE) -->
+  <script src="/static/script.js"></script>
 </body>
 </html>

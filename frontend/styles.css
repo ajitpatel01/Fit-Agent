@@ -13,15 +13,7 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-<<<<<<< HEAD
-<<<<<<< HEAD
   color: #e5e7eb;
-=======
-  color: #eaeaf0;
->>>>>>> 1b05d8e (Enhance frontend UI with dark purple theme and animated background)
-=======
-  color: #e5e7eb;
->>>>>>> 3f5605b (Frontend fixes and same-origin API integration)
   background: transparent; /* Vanta controls background */
 }
 
@@ -41,24 +33,10 @@ body {
 
 .container {
   max-width: 900px;
-<<<<<<< HEAD
-<<<<<<< HEAD
   margin: 70px auto;
   padding: 34px;
   position: relative;
   z-index: 2;
-=======
-  margin: 40px auto;
-  padding: 30px;
-  position: relative;
-  z-index: 2; /* Keeps content above Vanta */
->>>>>>> 1b05d8e (Enhance frontend UI with dark purple theme and animated background)
-=======
-  margin: 70px auto;
-  padding: 34px;
-  position: relative;
-  z-index: 2;
->>>>>>> 3f5605b (Frontend fixes and same-origin API integration)
 }
 
 /* =========================
@@ -66,17 +44,12 @@ body {
    ========================= */
 
 h1 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 3f5605b (Frontend fixes and same-origin API integration)
   font-family: "Macondo", cursive;
   font-size: 2.8rem;
   margin-bottom: 10px;
   color: #f5f3ff;
   font-weight: 400;
   letter-spacing: 0.5px;
-<<<<<<< HEAD
 }
 
 .subtitle {
@@ -97,42 +70,9 @@ h1 {
   margin-bottom: 30px;
   backdrop-filter: blur(8px);
   box-shadow:
-    0 0 0 1px rgba(255,255,255,0.02),
-    0 25px 60px rgba(0,0,0,0.65),
+    0 0 0 1px rgba(255, 255, 255, 0.02),
+    0 25px 60px rgba(0, 0, 0, 0.65),
     inset 0 0 30px rgba(148, 93, 255, 0.05);
-=======
-  font-size: 2.2rem;
-  margin-bottom: 6px;
-  color: #e7d9ff;
-=======
->>>>>>> 3f5605b (Frontend fixes and same-origin API integration)
-}
-
-.subtitle {
-  color: #b6a7d9;
-  margin-bottom: 46px;
-  font-size: 1rem;
-}
-
-/* =========================
-   CARD (GLASS + PREMIUM)
-   ========================= */
-
-.card {
-  background: rgba(18, 15, 30, 0.88);
-  border: 1px solid rgba(186, 134, 255, 0.22);
-  border-radius: 18px;
-  padding: 30px;
-  margin-bottom: 30px;
-  backdrop-filter: blur(8px);
-<<<<<<< HEAD
->>>>>>> 1b05d8e (Enhance frontend UI with dark purple theme and animated background)
-=======
-  box-shadow:
-    0 0 0 1px rgba(255,255,255,0.02),
-    0 25px 60px rgba(0,0,0,0.65),
-    inset 0 0 30px rgba(148, 93, 255, 0.05);
->>>>>>> 3f5605b (Frontend fixes and same-origin API integration)
 }
 
 /* =========================
@@ -141,38 +81,20 @@ h1 {
 
 label {
   display: block;
-<<<<<<< HEAD
-<<<<<<< HEAD
   margin-bottom: 10px;
   font-weight: 600;
   font-size: 0.9rem;
   color: #e0d9ff;
-=======
-  margin-bottom: 8px;
-  font-weight: 600;
-  color: #e2d9ff;
->>>>>>> 1b05d8e (Enhance frontend UI with dark purple theme and animated background)
-=======
-  margin-bottom: 10px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  color: #e0d9ff;
->>>>>>> 3f5605b (Frontend fixes and same-origin API integration)
 }
 
 textarea {
   width: 100%;
   min-height: 90px;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 3f5605b (Frontend fixes and same-origin API integration)
   padding: 14px 16px;
   border-radius: 14px;
   border: 1px solid rgba(186, 134, 255, 0.25);
   background: rgba(0, 0, 0, 0.45);
   color: #f5f3ff;
-<<<<<<< HEAD
   resize: vertical;
   margin-bottom: 22px;
   font-size: 0.95rem;
@@ -181,61 +103,22 @@ textarea {
 
 textarea::placeholder {
   color: #9a8fc7;
-=======
-  padding: 12px;
-  border-radius: 10px;
-  border: 1px solid rgba(186, 134, 255, 0.3);
-  background: rgba(0, 0, 0, 0.4);
-  color: #f1ecff;
-=======
->>>>>>> 3f5605b (Frontend fixes and same-origin API integration)
-  resize: vertical;
-  margin-bottom: 22px;
-  font-size: 0.95rem;
-  line-height: 1.55;
-}
-
-textarea::placeholder {
-<<<<<<< HEAD
-  color: #a89bc9;
->>>>>>> 1b05d8e (Enhance frontend UI with dark purple theme and animated background)
-=======
-  color: #9a8fc7;
->>>>>>> 3f5605b (Frontend fixes and same-origin API integration)
 }
 
 textarea:focus {
   outline: none;
   border-color: #b678ff;
-<<<<<<< HEAD
-<<<<<<< HEAD
   box-shadow: 0 0 0 2px rgba(182, 120, 255, 0.3);
 }
 
 /* =========================
    PRIMARY CTA BUTTON
-=======
-  box-shadow: 0 0 0 2px rgba(182, 120, 255, 0.25);
-}
-
-/* =========================
-   BUTTON
->>>>>>> 1b05d8e (Enhance frontend UI with dark purple theme and animated background)
-=======
-  box-shadow: 0 0 0 2px rgba(182, 120, 255, 0.3);
-}
-
-/* =========================
-   PRIMARY CTA BUTTON
->>>>>>> 3f5605b (Frontend fixes and same-origin API integration)
    ========================= */
 
 button {
   background: linear-gradient(135deg, #8f5bff, #c77dff);
   color: #ffffff;
   border: none;
-<<<<<<< HEAD
-<<<<<<< HEAD
   padding: 13px 28px;
   border-radius: 999px;
   font-size: 0.95rem;
@@ -245,31 +128,10 @@ button {
     transform 0.15s ease,
     box-shadow 0.15s ease,
     opacity 0.15s ease;
-=======
-  padding: 12px 22px;
-  border-radius: 12px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
->>>>>>> 1b05d8e (Enhance frontend UI with dark purple theme and animated background)
-=======
-  padding: 13px 28px;
-  border-radius: 999px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition:
-    transform 0.15s ease,
-    box-shadow 0.15s ease,
-    opacity 0.15s ease;
->>>>>>> 3f5605b (Frontend fixes and same-origin API integration)
 }
 
 button:hover {
   transform: translateY(-1px);
-<<<<<<< HEAD
-<<<<<<< HEAD
   box-shadow: 0 14px 34px rgba(183, 122, 255, 0.45);
   opacity: 0.95;
 }
@@ -321,66 +183,6 @@ button:disabled {
 
   h1 {
     font-size: 2.1rem;
-=======
-  box-shadow: 0 8px 24px rgba(183, 122, 255, 0.45);
-=======
-  box-shadow: 0 14px 34px rgba(183, 122, 255, 0.45);
-  opacity: 0.95;
->>>>>>> 3f5605b (Frontend fixes and same-origin API integration)
-}
-
-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-/* =========================
-   OUTPUT SECTION
-   ========================= */
-
-.output-section h2 {
-  margin-top: 0;
-  margin-bottom: 18px;
-  color: #f5f3ff;
-  font-weight: 600;
-}
-
-.output-block {
-  margin-bottom: 18px;
-  line-height: 1.6;
-  color: #e6e1ff;
-}
-
-.output-title {
-  font-weight: 700;
-  color: #cda9ff;
-  margin-bottom: 6px;
-}
-
-.confidence {
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: #9affc7;
-  margin-top: 16px;
-}
-
-/* =========================
-   RESPONSIVE DESIGN
-   ========================= */
-
-@media (max-width: 600px) {
-  .container {
-    padding: 22px;
-    margin: 36px auto;
-  }
-
-  h1 {
-<<<<<<< HEAD
-    font-size: 1.8rem;
->>>>>>> 1b05d8e (Enhance frontend UI with dark purple theme and animated background)
-=======
-    font-size: 2.1rem;
->>>>>>> 3f5605b (Frontend fixes and same-origin API integration)
   }
 
   textarea {
