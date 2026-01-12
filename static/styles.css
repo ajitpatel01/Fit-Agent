@@ -124,7 +124,7 @@ label {
   letter-spacing: 0.2px;
 }
 
-/* Auto-resizing, readable textarea */
+/* Auto-resizing, fully readable textarea */
 textarea {
   width: 100%;
   min-height: 72px;
@@ -136,7 +136,8 @@ textarea {
   background: rgba(10, 7, 25, 0.88);
   color: #f5f3ff;
 
-  /* 🔑 Auto-resize behavior */
+  /* 🔑 CRITICAL FIX */
+  box-sizing: content-box;   /* allows true vertical growth */
   resize: none;
   overflow: hidden;
   height: auto;
@@ -145,6 +146,7 @@ textarea {
 
   font-size: 0.95rem;
   line-height: 1.65;
+
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease,
