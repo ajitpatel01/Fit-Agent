@@ -124,33 +124,33 @@ label {
   letter-spacing: 0.2px;
 }
 
-/* Auto-resizing, fully readable textarea */
+/* Auto-resizing textarea with graceful scroll */
 textarea {
   width: 100%;
   min-height: 72px;
+  max-height: 520px;               /* 🔑 growth limit */
   padding: 14px 16px;
+
   border-radius: 14px;
   border: 1px solid rgba(186, 134, 255, 0.28);
+
   background: rgba(10, 7, 25, 0.88);
   color: #f5f3ff;
-  
-  /* 🔑 CHANGED: Switch to border-box for easier sizing logic */
-  box-sizing: border-box; 
-  
-  resize: none;
-  overflow: hidden;
 
-  /* 🔑 THE CRITICAL FIX: This makes the box grow with text */
-  field-sizing: content; 
-  
+  box-sizing: border-box;
+
+  resize: none;
+  overflow-y: auto;                /* 🔑 enable scroll AFTER max-height */
+  overflow-x: hidden;
+
   margin-bottom: 22px;
   font-size: 0.95rem;
   line-height: 1.65;
-  
-  /* Optional: Add a max-height so it doesn't get infinitely tall */
-  max-height: 600px; 
 
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
 }
 
 /* Placeholder */
@@ -166,6 +166,28 @@ textarea:focus {
   box-shadow: 0 0 0 2px rgba(192, 132, 252, 0.35);
   background: rgba(14, 10, 32, 0.95);
 }
+
+/* =========================
+   CUSTOM SCROLLBAR (CLEAN)
+   ========================= */
+
+textarea::-webkit-scrollbar {
+  width: 6px;
+}
+
+textarea::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+textarea::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #a78bfa, #7c3aed);
+  border-radius: 10px;
+}
+
+textarea::-webkit-scrollbar-thumb:hover {
+  background: #c084fc;
+}
+
 
 
 /* =========================
