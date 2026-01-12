@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
+from pathlib import Path
 
 from app.routes import router
 
@@ -28,20 +29,32 @@ app.add_middleware(
 )
 
 # -------------------------------------------------
+# Paths (IMPORTANT FOR RENDER)
+# -------------------------------------------------
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# -------------------------------------------------
+# Static Files (CSS / JS)
+# -------------------------------------------------
+
+app.mount(
+    "/static",
+    StaticFiles(directory=BASE_DIR / "static"),
+    name="static",
+)
+
+# -------------------------------------------------
 # API Routes
 # -------------------------------------------------
 
 app.include_router(router)
 
 # -------------------------------------------------
-# Serve Frontend (IMPORTANT)
+# Serve Frontend HTML
 # -------------------------------------------------
 
-# Mount frontend directory for static assets (CSS, JS)
-app.mount("/static", StaticFiles(directory="frontend"), name="static")
-
-# Serve main frontend page
 @app.get("/", response_class=HTMLResponse)
 def serve_frontend():
-    with open("frontend/index.html", "r", encoding="utf-8") as f:
-        return f.read()
+    html_path = BASE_DIR / "frontend" / "index.html"
+    return html_path.read_text(encoding="utf-8")
