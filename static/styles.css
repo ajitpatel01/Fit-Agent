@@ -129,28 +129,28 @@ textarea {
   width: 100%;
   min-height: 72px;
   padding: 14px 16px;
-
   border-radius: 14px;
   border: 1px solid rgba(186, 134, 255, 0.28);
-
   background: rgba(10, 7, 25, 0.88);
   color: #f5f3ff;
-
-  /* 🔑 CRITICAL FIX */
-  box-sizing: content-box;   /* allows true vertical growth */
+  
+  /* 🔑 CHANGED: Switch to border-box for easier sizing logic */
+  box-sizing: border-box; 
+  
   resize: none;
   overflow: hidden;
-  height: auto;
 
+  /* 🔑 THE CRITICAL FIX: This makes the box grow with text */
+  field-sizing: content; 
+  
   margin-bottom: 22px;
-
   font-size: 0.95rem;
   line-height: 1.65;
+  
+  /* Optional: Add a max-height so it doesn't get infinitely tall */
+  max-height: 600px; 
 
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    background 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
 /* Placeholder */
