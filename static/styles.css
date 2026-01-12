@@ -4,16 +4,39 @@
 
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: "Inter", system-ui, sans-serif;
 }
 
 html, body {
+  margin: 0;
+  padding: 0;
   width: 100%;
   min-height: 100%;
-  color: #eae6ff;
-  background: radial-gradient(circle at top, #2a145f 0%, #120624 45%, #0b0617 100%);
+  font-family: "Inter", system-ui, sans-serif;
+  color: #f5f3ff;
+}
+
+/* =========================
+   FIX WHITE BACKGROUND
+   ========================= */
+
+body {
+  background: radial-gradient(
+    circle at top,
+    #2b1055 0%,
+    #1a0f33 45%,
+    #0b0617 100%
+  );
+  overflow-x: hidden;
+}
+
+/* =========================
+   VANTA BACKGROUND WRAPPER
+   ========================= */
+
+#vanta-bg {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
 }
 
 /* =========================
@@ -21,107 +44,71 @@ html, body {
    ========================= */
 
 .navbar {
-  position: fixed;
+  position: sticky;
   top: 0;
-  left: 0;
-  width: 100%;
-  height: 58px;
-  padding: 0 28px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: rgba(15, 10, 35, 0.65);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+  padding: 16px 28px;
+  background: rgba(15, 10, 35, 0.55);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
   z-index: 10;
 }
 
 .navbar h2 {
+  margin: 0;
   font-size: 1.1rem;
-  font-weight: 600;
-  color: #f5f3ff;
-}
-
-.navbar span {
-  font-size: 0.8rem;
-  color: #b9a9ff;
+  color: #e9d5ff;
 }
 
 /* =========================
-   MAIN WRAPPER
+   MAIN CONTAINER
    ========================= */
 
-#vanta-bg {
-  min-height: 100vh;
-  width: 100%;
-}
-
 .container {
-  max-width: 880px;
-  margin: 120px auto 80px;
-  padding: 0 24px;
+  max-width: 900px;
+  margin: 70px auto;
+  padding: 34px;
   position: relative;
   z-index: 2;
 }
 
 /* =========================
-   HERO SECTION
+   HEADER
    ========================= */
 
 h1 {
   font-family: "Macondo", cursive;
-  font-size: 3rem;
-  text-align: center;
-  color: #ffffff;
+  font-size: 2.8rem;
   margin-bottom: 10px;
+  color: #f5f3ff;
+  font-weight: 400;
+  text-align: center;
 }
 
 .subtitle {
+  color: #c4b5fd;
+  margin-bottom: 40px;
   text-align: center;
-  font-size: 0.95rem;
-  color: #c8bbff;
-  max-width: 520px;
-  margin: 0 auto 26px;
-  line-height: 1.5;
-}
-
-/* Feature pills */
-
-.features {
-  display: flex;
-  justify-content: center;
-  gap: 18px;
-  margin-bottom: 46px;
-  flex-wrap: wrap;
-}
-
-.features span {
-  font-size: 0.75rem;
-  padding: 6px 14px;
-  border-radius: 999px;
-  background: rgba(167, 139, 250, 0.15);
-  color: #d9ccff;
-  border: 1px solid rgba(167, 139, 250, 0.25);
+  font-size: 1rem;
 }
 
 /* =========================
-   CARD (GLASS UI)
+   GLASS CARD
    ========================= */
 
 .card {
   background: linear-gradient(
     180deg,
-    rgba(40, 30, 70, 0.88),
-    rgba(24, 18, 48, 0.88)
+    rgba(28, 18, 58, 0.95),
+    rgba(18, 12, 40, 0.95)
   );
-  border: 1px solid rgba(180, 150, 255, 0.22);
+  border: 1px solid rgba(186, 134, 255, 0.22);
   border-radius: 18px;
-  padding: 28px;
+  padding: 30px;
   margin-bottom: 32px;
   backdrop-filter: blur(10px);
   box-shadow:
-    0 0 0 1px rgba(255,255,255,0.03),
-    0 28px 70px rgba(0,0,0,0.65);
+    0 0 0 1px rgba(255,255,255,0.02),
+    0 25px 60px rgba(0,0,0,0.6);
 }
 
 /* =========================
@@ -131,44 +118,65 @@ h1 {
 label {
   display: block;
   margin-bottom: 8px;
-  font-size: 0.85rem;
   font-weight: 600;
-  color: #e6deff;
+  font-size: 0.9rem;
+  color: #e9d5ff;
+  letter-spacing: 0.2px;
 }
 
+/* Auto-resizing, readable textarea */
 textarea {
   width: 100%;
-  min-height: 92px;
+  min-height: 72px;
   padding: 14px 16px;
-  margin-bottom: 20px;
+
   border-radius: 14px;
-  border: 1px solid rgba(180, 150, 255, 0.25);
-  background: rgba(10, 8, 20, 0.55);
+  border: 1px solid rgba(186, 134, 255, 0.28);
+
+  background: rgba(10, 7, 25, 0.88);
   color: #f5f3ff;
-  resize: vertical;
-  font-size: 0.92rem;
-  line-height: 1.55;
+
+  /* 🔑 Auto-resize behavior */
+  resize: none;
+  overflow: hidden;
+  height: auto;
+
+  margin-bottom: 22px;
+
+  font-size: 0.95rem;
+  line-height: 1.65;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
 }
 
+/* Placeholder */
+textarea::placeholder {
+  color: #a78bfa;
+  opacity: 0.9;
+}
+
+/* Focus state */
 textarea:focus {
   outline: none;
-  border-color: #b678ff;
-  box-shadow: 0 0 0 2px rgba(182, 120, 255, 0.35);
+  border-color: #c084fc;
+  box-shadow: 0 0 0 2px rgba(192, 132, 252, 0.35);
+  background: rgba(14, 10, 32, 0.95);
 }
+
 
 /* =========================
    PRIMARY BUTTON
    ========================= */
 
 button {
-  display: inline-block;
-  margin-top: 10px;
-  background: linear-gradient(135deg, #9b6bff, #c084ff);
+  background: linear-gradient(135deg, #8b5cf6, #c084fc);
   color: #ffffff;
   border: none;
-  padding: 13px 32px;
+  padding: 13px 30px;
   border-radius: 999px;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -176,59 +184,49 @@ button {
 
 button:hover {
   transform: translateY(-1px);
-  box-shadow: 0 14px 36px rgba(186, 134, 255, 0.45);
-}
-
-button:disabled {
-  opacity: 0.55;
-  cursor: not-allowed;
+  box-shadow: 0 14px 36px rgba(192, 132, 252, 0.45);
 }
 
 /* =========================
-   OUTPUT SECTION
+   OUTPUT
    ========================= */
 
 .output-section h2 {
+  margin-top: 0;
   margin-bottom: 16px;
-  font-size: 1.2rem;
-  font-weight: 600;
   color: #f5f3ff;
 }
 
 .output-block {
   margin-bottom: 18px;
-  line-height: 1.6;
-  color: #e9e4ff;
+  line-height: 1.65;
+  color: #ede9fe;
 }
 
 .output-title {
   font-weight: 700;
-  font-size: 0.85rem;
-  color: #d6c7ff;
+  color: #c4b5fd;
   margin-bottom: 6px;
 }
 
 .confidence {
-  margin-top: 18px;
   font-size: 1.35rem;
   font-weight: 700;
-  color: #9affc7;
+  color: #86efac;
+  margin-top: 18px;
 }
 
 /* =========================
-   RESPONSIVE
+   MOBILE
    ========================= */
 
-@media (max-width: 640px) {
-  h1 {
-    font-size: 2.3rem;
-  }
-
+@media (max-width: 600px) {
   .container {
-    margin-top: 100px;
+    padding: 22px;
+    margin: 40px auto;
   }
 
-  textarea {
-    min-height: 80px;
+  h1 {
+    font-size: 2.1rem;
   }
 }
