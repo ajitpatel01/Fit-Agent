@@ -22,32 +22,69 @@
     <main class="container">
       <h1 class="macondo-regular">FitAgent</h1>
       <p class="subtitle">
-        AI-powered internship fit analysis. Discover how well your profile matches any role and get a tailored resume.
+        AI-powered internship fit analysis and ATS-style resume confidence boosting.
       </p>
 
-      <!-- FORM -->
+      <!-- ========================= -->
+      <!-- FitAgent v1: Fit Analysis -->
+      <!-- ========================= -->
       <div class="card">
+        <h2 class="section-title">Fit Analysis (v1)</h2>
+
         <label>Your Skills</label>
-        <textarea id="skills"></textarea>
+        <textarea id="skills" class="large-textarea"
+          placeholder="e.g. Python, React, Machine Learning, SQL"></textarea>
 
         <label>Your Interests</label>
-        <textarea id="interests"></textarea>
+        <textarea id="interests" class="large-textarea"
+          placeholder="e.g. AI systems, backend development, data science"></textarea>
 
         <label>Internship Job Description</label>
-        <textarea id="job_description"></textarea>
+        <textarea id="job_description" class="large-textarea"
+          placeholder="Paste the internship job description here..."></textarea>
 
         <button id="analyzeBtn">Analyze My Fit →</button>
       </div>
 
-      <!-- OUTPUT -->
+      <!-- OUTPUT v1 -->
       <div class="card output-section">
-        <h2>Analysis Output</h2>
-        <div id="output">Submit your details to see AI-powered analysis.</div>
+        <h2>Fit Analysis Output</h2>
+        <div id="output">
+          Submit your details to see AI-powered fit analysis.
+        </div>
       </div>
+
+      <!-- ================================= -->
+      <!-- FitAgent v2: Resume Confidence -->
+      <!-- ================================= -->
+      <div class="card">
+        <h2 class="section-title">Resume Confidence Booster (v2)</h2>
+        <p class="helper-text">
+          Upload your resume PDF and compare it against a job description using ATS-style analysis.
+        </p>
+
+        <label>Upload Resume (PDF)</label>
+        <input type="file" id="resume_pdf" accept=".pdf" class="file-input"/>
+
+        <label>Job Description</label>
+        <textarea id="resume_jd" class="large-textarea"
+          placeholder="Paste the job description you are applying for..."></textarea>
+
+        <button id="resumeAnalyzeBtn">Boost Resume Confidence →</button>
+      </div>
+
+      <!-- OUTPUT v2 -->
+      <div class="card output-section">
+        <h2>Resume Confidence Output</h2>
+        <div id="resume_output">
+          Upload a resume PDF and job description to see ATS-style confidence analysis.
+        </div>
+      </div>
+
     </main>
   </div>
 
-  <!-- JS (ONLY ONCE) -->
-  <script src="/static/script.js"></script>
+  <!-- JS -->
+  <script src="/static/script.js?v=2"></script>
 </body>
 </html>

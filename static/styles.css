@@ -64,9 +64,9 @@ body {
    ========================= */
 
 .container {
-  max-width: 900px;
-  margin: 70px auto;
-  padding: 34px;
+  max-width: 980px;
+  margin: 80px auto;
+  padding: 36px;
   position: relative;
   z-index: 2;
 }
@@ -86,9 +86,27 @@ h1 {
 
 .subtitle {
   color: #c4b5fd;
-  margin-bottom: 40px;
+  margin-bottom: 44px;
   text-align: center;
-  font-size: 1rem;
+  font-size: 1.05rem;
+}
+
+/* =========================
+   SECTION HEADERS
+   ========================= */
+
+.section-title {
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 1.3rem;
+  color: #f5f3ff;
+}
+
+.helper-text {
+  font-size: 0.9rem;
+  color: #d8b4fe;
+  margin-bottom: 20px;
+  line-height: 1.6;
 }
 
 /* =========================
@@ -102,9 +120,9 @@ h1 {
     rgba(18, 12, 40, 0.95)
   );
   border: 1px solid rgba(186, 134, 255, 0.22);
-  border-radius: 18px;
-  padding: 30px;
-  margin-bottom: 32px;
+  border-radius: 20px;
+  padding: 34px;
+  margin-bottom: 36px;
   backdrop-filter: blur(10px);
   box-shadow:
     0 0 0 1px rgba(255,255,255,0.02),
@@ -124,28 +142,30 @@ label {
   letter-spacing: 0.2px;
 }
 
-/* Auto-resizing textarea with graceful scroll */
-textarea {
-  width: 100%;
-  min-height: 72px;
-  max-height: 520px;               /* 🔑 growth limit */
-  padding: 14px 16px;
+/* =========================
+   TEXTAREA (READABILITY BOOST)
+   ========================= */
 
-  border-radius: 14px;
+textarea,
+.large-textarea {
+  width: 100%;
+  min-height: 110px;
+  max-height: 560px;
+  padding: 16px 18px;
+
+  border-radius: 16px;
   border: 1px solid rgba(186, 134, 255, 0.28);
 
-  background: rgba(10, 7, 25, 0.88);
+  background: rgba(10, 7, 25, 0.9);
   color: #f5f3ff;
 
-  box-sizing: border-box;
-
   resize: none;
-  overflow-y: auto;                /* 🔑 enable scroll AFTER max-height */
+  overflow-y: auto;
   overflow-x: hidden;
 
-  margin-bottom: 22px;
-  font-size: 0.95rem;
-  line-height: 1.65;
+  margin-bottom: 26px;
+  font-size: 0.97rem;
+  line-height: 1.7;
 
   transition:
     border-color 0.2s ease,
@@ -153,13 +173,11 @@ textarea {
     background 0.2s ease;
 }
 
-/* Placeholder */
 textarea::placeholder {
   color: #a78bfa;
   opacity: 0.9;
 }
 
-/* Focus state */
 textarea:focus {
   outline: none;
   border-color: #c084fc;
@@ -168,7 +186,36 @@ textarea:focus {
 }
 
 /* =========================
-   CUSTOM SCROLLBAR (CLEAN)
+   FILE INPUT (PDF UPLOAD)
+   ========================= */
+
+.file-input {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 26px;
+
+  background: rgba(10, 7, 25, 0.9);
+  border: 1px dashed rgba(186, 134, 255, 0.45);
+  border-radius: 16px;
+
+  color: #e9d5ff;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.file-input::file-selector-button {
+  background: linear-gradient(135deg, #8b5cf6, #c084fc);
+  color: #fff;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 999px;
+  margin-right: 14px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* =========================
+   SCROLLBAR (CLEAN)
    ========================= */
 
 textarea::-webkit-scrollbar {
@@ -188,8 +235,6 @@ textarea::-webkit-scrollbar-thumb:hover {
   background: #c084fc;
 }
 
-
-
 /* =========================
    PRIMARY BUTTON
    ========================= */
@@ -198,7 +243,7 @@ button {
   background: linear-gradient(135deg, #8b5cf6, #c084fc);
   color: #ffffff;
   border: none;
-  padding: 13px 30px;
+  padding: 14px 34px;
   border-radius: 999px;
   font-size: 0.95rem;
   font-weight: 600;
@@ -217,13 +262,13 @@ button:hover {
 
 .output-section h2 {
   margin-top: 0;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
   color: #f5f3ff;
 }
 
 .output-block {
-  margin-bottom: 18px;
-  line-height: 1.65;
+  margin-bottom: 20px;
+  line-height: 1.7;
   color: #ede9fe;
 }
 
@@ -234,10 +279,10 @@ button:hover {
 }
 
 .confidence {
-  font-size: 1.35rem;
+  font-size: 1.4rem;
   font-weight: 700;
   color: #86efac;
-  margin-top: 18px;
+  margin-top: 22px;
 }
 
 /* =========================
@@ -252,5 +297,9 @@ button:hover {
 
   h1 {
     font-size: 2.1rem;
+  }
+
+  .card {
+    padding: 26px;
   }
 }
