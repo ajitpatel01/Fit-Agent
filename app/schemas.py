@@ -55,3 +55,67 @@ class FitAgentOutput(BaseModel):
         le=100,
         description="ATS-style confidence score between 0 and 100"
     )
+
+from typing import List, Dict
+
+
+class BeforeAfterExample(BaseModel):
+    before: str = Field(
+        ...,
+        description="Original resume line before improvement"
+    )
+    after: str = Field(
+        ...,
+        description="Improved version of the resume line"
+    )
+
+
+class SectionAnalysis(BaseModel):
+    issues: List[str] = Field(
+        default_factory=list,
+        description="Identified issues in this resume section"
+    )
+    why_it_matters: str = Field(
+        ...,
+        description="Explanation of why these issues reduce ATS confidence"
+    )
+    suggestions: List[str] = Field(
+        default_factory=list,
+        description="Actionable improvement suggestions for this section"
+    )
+    before_after_examples: List[BeforeAfterExample] = Field(
+        default_factory=list,
+        description="Exact before and after rewrite examples"
+    )
+
+
+class ResumeConfidenceOutput(BaseModel):
+    current_confidence_score: int = Field(
+        ...,
+        ge=0,
+        le=100,
+        description="ATS-style confidence score before improvements"
+    )
+
+    confidence_summary: str = Field(
+        ...,
+        description="High-level explanation of the confidence score"
+    )
+
+    section_analysis: Dict[str, SectionAnalysis] = Field(
+        ...,
+        description="Section-wise resume analysis mapped by section name"
+    )
+
+    improved_resume_text: str = Field(
+        ...,
+        description="Fully improved resume content (text only, no formatting)"
+    )
+
+    improved_confidence_score: int = Field(
+        ...,
+        ge=0,
+        le=100,
+        description="ATS-style confidence score after improvements"
+    )
+
