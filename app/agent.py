@@ -6,6 +6,10 @@ from app.config import settings
 from app.schemas import FitAgentInput, FitAgentOutput
 from app.prompt import build_fitagent_prompt
 
+from app.schemas import ResumeConfidenceOutput
+from app.prompt import build_resume_confidence_prompt
+
+
 
 def extract_json(text: str) -> dict:
     """
@@ -47,3 +51,37 @@ def run_fitagent_analysis(payload: FitAgentInput) -> FitAgentOutput:
     parsed_output = extract_json(raw_output)
 
     return FitAgentOutput(**parsed_output)
+
+
+def run_resume_confidence_analysis(
+    structured_resume: dict,
+    job_description: str
+) -> ResumeConfidenceOutput:
+    """
+    Runs ATS-style resume confidence analysis using Groq.
+    """
+
+    if not settings.GROQ_API_KEY:
+        raise RuntimeError("GROQ_API_KEY is not set in environment variables")
+
+    client = Groq(api_key=settings.GROQ_API_KEY)
+
+    prompt = build_resume_confidence_prompt(
+        structured_resume=structured_resume,
+        job_description=job_description,
+    )
+
+    response = client.chat.completions.create(
+        model="llama-3.1-8b-instant",
+        messages=[
+            {"role": "system", "content": prompt["system"]},
+            {"role": "user", "content": prompt["user"]},
+        ],
+        temperature=0.2,
+    )
+
+    raw_output = response.choices[0].message.content
+
+    parsed_output = extract_json(raw_output)
+
+    return ResumeConfidenceOutput(**parsed_output)
