@@ -1,8 +1,11 @@
-# FitAgent – AI Internship Fit & Resume Analyzer
+# FitAgent – AI Internship Fit & Resume Confidence Booster (ATS-Style)
 
-FitAgent is a minimal AI-powered web application that evaluates how well a student’s profile aligns with a given internship role.
+FitAgent is a minimal AI-powered web application that evaluates how well a student’s profile and resume align with a given internship or job role.
 
-It uses **prompt-driven Large Language Model (LLM) reasoning** to compare a student’s skills and interests against an internship job description and generates clear, explainable outputs such as match analysis, skill gaps, recommendations, and a JD-aligned resume.
+It uses **prompt-driven Large Language Model (LLM) reasoning** to:
+
+- Compare a student’s skills and interests against an internship job description (**FitAgent v1**)
+- Analyze a full resume PDF against a job description and provide ATS-style confidence boosting (**FitAgent v2**)
 
 The project is intentionally simple and focused to demonstrate **AI reasoning, prompt engineering, and end-to-end integration**, without model training or complex system design.
 
@@ -21,13 +24,17 @@ This project fulfills the assignment requirement to build a basic AI agent or sc
   - A new resume aligned with the job description
   - Confidence / ATS-style score
 
-FitAgent implements this as a **backend API with a minimal web interface**, using a single AI reasoning step.
+FitAgent implements this as a **backend API with a minimal web interface**, using controlled AI reasoning steps.
 
 ---
 
 ## How FitAgent Works
 
-FitAgent operates as a **single AI reasoning agent**:
+FitAgent operates as two clean AI reasoning flows:
+
+---
+
+### ✅ FitAgent v1 — Internship Fit Analyzer
 
 ### Inputs
 - Student skills (free-text)
@@ -45,17 +52,40 @@ All outputs are generated in **one controlled LLM call**, ensuring predictable a
 
 ---
 
+### ✅ FitAgent v2 — Resume Confidence Booster (ATS-Style)
+
+FitAgent v2 upgrades the system into a resume-level ATS evaluator.
+
+### Inputs
+- Resume PDF upload
+- Job description text
+
+### Outputs
+- Current ATS confidence score
+- Section-wise weaknesses (Profile, Skills, Experience, Projects, Education)
+- Exact reasons confidence is low
+- Before → After line-level improvements
+- Fully improved resume text
+- Improved confidence score
+
+This mimics how real ATS resume scoring tools work.
+
+---
+
 ## AI Reasoning Approach
 
 - A carefully designed prompt instructs the AI to:
-  - Understand the student profile
-  - Understand internship requirements
-  - Compare skill overlap
-  - Identify missing skills
+  - Understand the student profile or resume sections
+  - Understand internship/job requirements
+  - Compare skill overlap and missing keywords
+  - Identify weak resume sections
+  - Suggest improvements with examples
   - Rewrite resume content aligned with the job description
-  - Assign a confidence score
+  - Assign ATS-style confidence scores
+
 - The AI response is constrained to a **strict JSON format**
 - Robust JSON extraction ensures schema-safe outputs even if the model adds extra text
+- Pydantic validation ensures predictable frontend-safe responses
 
 This demonstrates **prompt design, reasoning control, and safe AI integration**.
 
@@ -63,12 +93,10 @@ This demonstrates **prompt design, reasoning control, and safe AI integration**.
 
 ## High-Level System Flow
 
+### FitAgent v1 Flow
+
 ```text
-User Input (Web Form)
-        ↓
-Frontend (HTML + JavaScript)
-        ↓
-FastAPI Backend
+Typed Skills + Interests + Job Description
         ↓
 Prompt Construction
         ↓
@@ -77,29 +105,51 @@ LLM Reasoning (Groq)
 Structured JSON Response
         ↓
 Frontend Output Rendering
+
 ```
+
+## FitAgent v2 Flow
+```
+Resume PDF + Job Description
+        ↓
+PDF Text Extraction (pypdf)
+        ↓
+Resume Section Structuring (rule-based)
+        ↓
+Prompt-Driven ATS Reasoning
+        ↓
+Weakness Detection + Suggestions
+        ↓
+Improved Resume Reconstruction
+        ↓
+Old Score → New Score
+```
+
 ## Project Structure
 ```
 fitagent/
 │
 ├── app/
-│   ├── main.py        # FastAPI app entry point
-│   ├── routes.py      # /analyze endpoint
-│   ├── schemas.py     # Request/response models
-│   ├── prompt.py      # Prompt design
-│   ├── agent.py       # AI reasoning orchestration
-│   └── config.py      # Environment & API keys
+│   ├── main.py                  # FastAPI app entry point
+│   ├── routes.py                # /analyze and /analyze-resume endpoints
+│   ├── schemas.py               # Request/response models (v1 + v2)
+│   ├── prompt.py                # Prompt templates for both flows
+│   ├── agent.py                 # AI reasoning orchestration
+│   ├── resume_parser.py         # PDF resume extraction module (v2)
+│   ├── resume_structurer.py     # Resume section structuring logic (v2)
+│   └── config.py                # Environment & API keys
 │
 ├── frontend/
-│   └── index.html     # Main UI
+│   └── index.html               # Main UI (v1 + v2)
 │
 ├── static/
-│   ├── styles.css     # UI styling
-│   └── script.js      # Frontend logic
+│   ├── styles.css               # Glassmorphism UI theme
+│   └── script.js                # Frontend logic for both endpoints
 │
 ├── requirements.txt
 ├── README.md
 └── run.md
+
 
 
 ```
@@ -110,7 +160,7 @@ fitagent/
 
 - **Backend:** Python, FastAPI  
 - **Frontend:** HTML, CSS, JavaScript  
-- **AI:** Large Language Model, Groq LLM (LLaMA 3.1 family), Prompt-based reasoning (no training, no pipelines)
+- **AI:** Groq LLM (LLaMA 3.1 family), Prompt-based reasoning (no training, no pipelines)
 
 ---
 
@@ -118,17 +168,29 @@ fitagent/
 
 FitAgent reflects how AI features are prototyped in real-world product teams:
 
-- Clear problem definition  
-- Controlled and structured use of LLMs  
-- Emphasis on explainability and reasoning  
-- Simple, maintainable system design  
+Clear problem definition
 
-It demonstrates **practical AI engineering**, not over-engineered solutions.
+Controlled and structured use of LLMs
+
+Emphasis on explainability and reasoning
+
+ATS-style resume confidence scoring behavior
+
+Modular backend architecture (parser + structurer + agent separation)
+
+Simple, maintainable system design
+
+It demonstrates practical AI engineering, not over-engineered solutions.
 
 ---
 
 ## Running the Project
 
 Instructions to run the project locally are provided in `run.md`.
+
+Quick start: 
+pip install -r requirements.txt
+uvicorn app.main:app --reload
+
 
 Live Demo: https://fit-agent.onrender.com
